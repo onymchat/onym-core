@@ -67,6 +67,7 @@ compile_commands.json
 /autom4te.cache
 /build
 /src/stellar-core
+/src/onym-core
 /src/fuzz_*
 /buckets
 /compile

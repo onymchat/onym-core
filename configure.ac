@@ -5,8 +5,11 @@
 # under the Apache License, Version 2.0. See the COPYING file at the root
 # of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 
+# Modified by the Onym Core contributors in 2026: package renamed from
+# stellar-core to onym-core. See FORK_ORIGIN.md.
+
 AC_PREREQ([2.68])
-AC_INIT([stellar-core],[0.1],[],[],[http://www.stellar.org])
+AC_INIT([onym-core],[0.1],[],[],[https://github.com/onymchat/onym-core])
 # tar-ustar is required for long file names when libsodium is bundled
 AM_INIT_AUTOMAKE([-Wall -Wextra -Wconversion subdir-objects tar-ustar silent-rules])
 AC_CONFIG_SRCDIR([configure.ac])

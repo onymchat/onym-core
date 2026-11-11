@@ -1,7 +1,10 @@
 ## Process this file with automake to produce Makefile.in
 
+# Modified by the Onym Core contributors in 2026: executable renamed from
+# stellar-core to onym-core. See FORK_ORIGIN.md.
+
 AUTOMAKE_OPTIONS = serial-tests
-bin_PROGRAMS = stellar-core
+bin_PROGRAMS = onym-core
 
 include $(top_srcdir)/common.mk
 include $(srcdir)/src.mk
@@ -70,15 +73,15 @@ GENERATED_XDRQUERY_SOURCES = util/xdrquery/XDRQueryScanner.cpp util/xdrquery/XDR
 GENERATED_RUST_SOURCES = rust/RustBridge.cpp
 
 # main/main.cpp is excluded from SRC_CXX_FILES (via make-mks) so fuzz targets
-# don't get the stellar-core main(). We add it back here for stellar-core only.
+# don't get the onym-core main(). We add it back here for onym-core only.
 MAIN_FILES = $(GENERATED_VERSION_SOURCES) main/main.cpp
 
 if BUILD_TESTS
-stellar_core_SOURCES = $(MAIN_FILES) $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
+onym_core_SOURCES = $(MAIN_FILES) $(SRC_CXX_FILES) $(SRC_TEST_CXX_FILES)
 CARGO_FEATURE_FUZZ_TARGETS = --features fuzz_targets
 CARGO_FEATURE_TESTUTILS = --features testutils
 else # !BUILD_TESTS
-stellar_core_SOURCES = $(MAIN_FILES) $(SRC_CXX_FILES)
+onym_core_SOURCES = $(MAIN_FILES) $(SRC_CXX_FILES)
 CARGO_FEATURE_FUZZ_TARGETS =
 CARGO_FEATURE_TESTUTILS =
 endif # !BUILD_TESTS
@@ -99,7 +102,7 @@ main/XDRFilesSha256.cpp: $(SRC_X_FILES) Makefile $(top_srcdir)/hash-xdrs.sh
 	$(top_srcdir)/hash-xdrs.sh $(top_srcdir)/src/protocol-curr >$@
 
 # tcmalloc must be linked early to properly override malloc/free
-stellar_core_LDADD = $(libtcmalloc_LIBS) $(soci_LIBS) $(libmedida_LIBS)		\
+onym_core_LDADD = $(libtcmalloc_LIBS) $(soci_LIBS) $(libmedida_LIBS)		\
 	$(top_builddir)/lib/lib3rdparty.a $(sqlite3_LIBS)	\
 	$(libpq_LIBS) $(xdrpp_LIBS) $(libsodium_LIBS)
 
@@ -134,7 +137,7 @@ util/xdrquery/XDRQueryParser.h: util/xdrquery/XDRQueryParser.cpp
 	touch $@
 
 BUILT_SOURCES += $(GENERATED_XDRQUERY_SOURCES) util/xdrquery/XDRQueryParser.h
-stellar_core_SOURCES += $(GENERATED_XDRQUERY_SOURCES) util/xdrquery/XDRQueryParser.h
+onym_core_SOURCES += $(GENERATED_XDRQUERY_SOURCES) util/xdrquery/XDRQueryParser.h
 
 # Old automakes have buggy dependency tracking for conditional generated
 # sources. We work around this here by making rust/RustBridge.{cpp,h} generated
@@ -144,7 +147,7 @@ stellar_core_SOURCES += $(GENERATED_XDRQUERY_SOURCES) util/xdrquery/XDRQueryPars
 # SOURCES addition we're doing here, have to list unadorned paths.
 
 BUILT_SOURCES += rust/RustBridge.h $(GENERATED_RUST_SOURCES)
-stellar_core_SOURCES += rust/RustBridge.h $(GENERATED_RUST_SOURCES)
+onym_core_SOURCES += rust/RustBridge.h $(GENERATED_RUST_SOURCES)
 
 # Figure out if we ought to be passing -Zsanitizer=... RUSTFLAGS and friends
 SANITIZE_FLAGS := $(filter -fsanitize=%,$(CXXFLAGS))
@@ -515,7 +518,7 @@ $(LIBRUST_STELLAR_CORE): $(RUST_HOST_DEPFILES) $(SRC_RUST_FILES) $(ALL_SOROBAN_L
 
 endif # ENABLE_FASTDEV_UNSAFE_FOR_PRODUCTION
 
-stellar_core_LDADD += $(LIBRUST_STELLAR_CORE) -ldl
+onym_core_LDADD += $(LIBRUST_STELLAR_CORE) -ldl
 
 $(srcdir)/src.mk: $(top_srcdir)/make-mks
 	cd $(top_srcdir) && ./make-mks
@@ -666,17 +669,17 @@ fuzz-targets: $(noinst_PROGRAMS)
 	@echo "Built fuzz targets: $(FUZZ_TARGETS)"
 
 # Generate seed corpus for all targets
-fuzz-corpus: stellar-core
+fuzz-corpus: onym-core
 	@for target in $(FUZZ_TARGETS); do \
 		mkdir -p corpus/$$target; \
 		echo "Generating $$target seed corpus..."; \
-		./stellar-core gen-fuzz --target=$$target --output-dir=corpus/$$target 2>/dev/null; \
+		./onym-core gen-fuzz --target=$$target --output-dir=corpus/$$target 2>/dev/null; \
 		echo "Generated seed files in corpus/$$target/"; \
 	done
 
 # Run regression tests on all targets
-fuzz-check: stellar-core
-	./stellar-core test [fuzz]
+fuzz-check: onym-core
+	./onym-core test [fuzz]
 
 # Package seed corpus as zip files (oss-fuzz convention)
 fuzz-corpus-zip: fuzz-corpus

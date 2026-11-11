@@ -1,6 +1,8 @@
 // Copyright 2019 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 #pragma once
 
@@ -22,7 +24,7 @@ constexpr auto const POSSIBLY_CORRUPTED_LOCAL_DATA =
 constexpr auto const POSSIBLY_CORRUPTED_QUORUM_SET =
     "Check your QUORUM_SET for corrupted nodes";
 constexpr auto const UPGRADE_STELLAR_CORE =
-    "Upgrade this stellar-core installation to newest version";
+    "Upgrade this onym-core installation to newest version";
 constexpr auto const POSSIBLY_BAD_LOCAL_CLOCK =
     "It is possible the clock on the local node has drifted. Run NTP "
     "periodically to avoid this.";

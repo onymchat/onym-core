@@ -1,6 +1,8 @@
 // Copyright 2014 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 #include "ApplicationImpl.h"
 #include "util/Fs.h"
@@ -1048,7 +1050,7 @@ ApplicationImpl::manualClose(std::optional<uint32_t> const& manualLedgerSeq,
 
     throw std::invalid_argument(
         "Set MANUAL_CLOSE=true in the stellar-core.cfg if you want to "
-        "close every ledger manually. Otherwise, run stellar-core "
+        "close every ledger manually. Otherwise, run onym-core "
         "with --wait-for-consensus flag to close ledger once and "
         "trigger consensus. Ensure NODE_IS_VALIDATOR is set to true.");
 }

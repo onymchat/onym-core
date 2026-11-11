@@ -3,6 +3,8 @@
 # Copyright 2018 Stellar Development Foundation and contributors. Licensed
 # under the Apache License, Version 2.0. See the COPYING file at the root
 # of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+# Modified by the Onym Core contributors in 2026: executable renamed from
+# stellar-core to onym-core. See FORK_ORIGIN.md.
 
 BASE_INSTANCE="$1"
 TESTS="$2"
@@ -110,11 +112,11 @@ else
     echo "PostgreSQL enabled for tests using existing database cluster"
 fi
 
-./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS" 2> /dev/null
+./onym-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS" 2> /dev/null
 R=$?
 if [[ $R -ne 0 ]] ; then
     echo "Test failed, rerunning with debugger"
-    echo ./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
-    lldb -O 'settings set target.disable-aslr false' -o 'r'  -o 'bt' -o 'exit' -- ./stellar-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
+    echo ./onym-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
+    lldb -O 'settings set target.disable-aslr false' -o 'r'  -o 'bt' -o 'exit' -- ./onym-core test $STELLAR_CORE_TEST_PARAMS --base-instance $BASE_INSTANCE "$TESTS"
 fi
 exit $R
