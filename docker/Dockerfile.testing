@@ -1,3 +1,6 @@
+# Modified by the Onym Core contributors in 2026: executable renamed from
+# stellar-core to onym-core. See FORK_ORIGIN.md.
+
 # Build stage, includes everything needed to build.
 FROM ubuntu:noble as buildstage
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,7 +41,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install postgresql curl sqlite3 iproute2 libc++abi1-20 libc++1-20
 
-COPY --from=buildstage /usr/local/bin/stellar-core /usr/local/bin/stellar-core
+COPY --from=buildstage /usr/local/bin/onym-core /usr/local/bin/onym-core
 EXPOSE 11625
 EXPOSE 11626
-CMD stellar-core
+CMD onym-core

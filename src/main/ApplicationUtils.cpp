@@ -1,6 +1,8 @@
 // Copyright 2018 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 #include "main/ApplicationUtils.h"
 #include "bucket/BucketManager.h"
@@ -96,7 +98,7 @@ writeLedgerAggregationTable(
 Application::pointer
 setupApp(Config& cfg, VirtualClock& clock)
 {
-    LOG_INFO(DEFAULT_LOG, "Starting stellar-core {}", STELLAR_CORE_VERSION);
+    LOG_INFO(DEFAULT_LOG, "Starting onym-core {}", STELLAR_CORE_VERSION);
     Application::pointer app;
     app = Application::create(clock, cfg, false);
     if (!app->getHistoryArchiveManager().checkSensibleConfig())
@@ -1089,10 +1091,9 @@ catchup(Application::pointer app, CatchupConfiguration cc,
                  "nothing to do",
                  cc.toLedger(),
                  app->getLedgerManager().getLastClosedLedgerNum());
-        LOG_INFO(
-            DEFAULT_LOG,
-            "* If you really want to catchup to {} run stellar-core new-db",
-            cc.toLedger());
+        LOG_INFO(DEFAULT_LOG,
+                 "* If you really want to catchup to {} run onym-core new-db",
+                 cc.toLedger());
         LOG_INFO(DEFAULT_LOG, "*");
         return 2;
     }

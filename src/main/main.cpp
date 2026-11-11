@@ -1,6 +1,8 @@
 // Copyright 2014 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 #include "crypto/CryptoError.h"
 #include "invariant/InvariantDoesNotHold.h"
@@ -312,7 +314,7 @@ checkStellarCoreMajorVersionProtocolIdentity()
             stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION)
         {
             throw std::runtime_error(
-                fmt::format("stellar-core version {} has major version {} and "
+                fmt::format("onym-core version {} has major version {} and "
                             "is configured for next-protocol support, but "
                             "CURRENT_LEDGER_PROTOCOL_VERSION is {}",
                             STELLAR_CORE_VERSION, *major_release_version,
@@ -325,7 +327,7 @@ checkStellarCoreMajorVersionProtocolIdentity()
             stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION)
         {
             throw std::runtime_error(
-                fmt::format("stellar-core version {} has major version {} but "
+                fmt::format("onym-core version {} has major version {} but "
                             "CURRENT_LEDGER_PROTOCOL_VERSION is {}",
                             STELLAR_CORE_VERSION, *major_release_version,
                             stellar::Config::CURRENT_LEDGER_PROTOCOL_VERSION));
@@ -338,7 +340,7 @@ checkStellarCoreMajorVersionProtocolIdentity()
         // vX.Y.ZrcN or vX.Y.ZHOTN, then we are running a non-release version of
         // stellar-core and we relax the check above and just warn.
         std::cerr << "Warning: running non-release version "
-                  << STELLAR_CORE_VERSION << " of stellar-core" << std::endl;
+                  << STELLAR_CORE_VERSION << " of onym-core" << std::endl;
     }
 }
 } // namespace

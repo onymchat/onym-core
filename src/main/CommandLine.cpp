@@ -1,6 +1,8 @@
 // Copyright 2018 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 // clang-format off
 // This needs to be included first
@@ -1070,7 +1072,7 @@ runForceSCP(CommandLineArgs const& args)
     auto reset = false;
 
     auto resetOption = clara::Opt{reset}["--reset"](
-        "reset force SCP flag, so next time stellar-core "
+        "reset force SCP flag, so next time onym-core "
         "is run it will wait to hear from the network "
         "rather than starting with the local ledger");
 
@@ -1592,7 +1594,7 @@ run(CommandLineArgs const& args)
                 {
                     if (!cfg.NODE_IS_VALIDATOR)
                     {
-                        LOG_ERROR(DEFAULT_LOG, "Starting stellar-core in "
+                        LOG_ERROR(DEFAULT_LOG, "Starting onym-core in "
                                                "MANUAL_CLOSE mode requires "
                                                "NODE_IS_VALIDATOR to be set");
                         return 1;
@@ -1667,6 +1669,12 @@ int
 runVersion(CommandLineArgs const&)
 {
     writeVersionInfo(std::cout);
+    std::cout << "Onym Core (onym-core), an independent fork of Stellar Core "
+                 "(https://github.com/stellar/stellar-core)."
+              << std::endl;
+    std::cout << "This is independent software, not affiliated with, "
+                 "sponsored or endorsed by the Stellar Development Foundation."
+              << std::endl;
     return 0;
 }
 
@@ -1745,7 +1753,7 @@ fuzzTargetParser(std::string& targetName)
     auto validateTarget = [&] {
         if (targetName.empty())
         {
-            return "--target is required. Use 'stellar-core fuzz-list' to "
+            return "--target is required. Use 'onym-core fuzz-list' to "
                    "see available targets.";
         }
         // Validate against the registry
@@ -1753,12 +1761,12 @@ fuzzTargetParser(std::string& targetName)
         {
             return "";
         }
-        return "Unrecognized fuzz target. Use 'stellar-core fuzz-list' to see "
+        return "Unrecognized fuzz target. Use 'onym-core fuzz-list' to see "
                "available targets.";
     };
 
     return {clara::Opt{targetName, "FUZZ-TARGET"}["--target"](
-                "set the fuzz target (required). Use 'stellar-core "
+                "set the fuzz target (required). Use 'onym-core "
                 "fuzz-list' to see available targets."),
             validateTarget};
 }
@@ -1817,8 +1825,8 @@ runFuzzList(CommandLineArgs const& args)
         std::cout << "  " << target.name << " - " << target.description << "\n";
     }
     std::cout << "\nUsage:\n";
-    std::cout << "  stellar-core fuzz-one --target=<target> <input-file>\n";
-    std::cout << "  stellar-core gen-fuzz --target=<target> "
+    std::cout << "  onym-core fuzz-one --target=<target> <input-file>\n";
+    std::cout << "  onym-core gen-fuzz --target=<target> "
                  "--output-dir=<dir> [--count=<n>]\n";
     return 0;
 }
@@ -2051,8 +2059,7 @@ handleCommandLine(int argc, char* const* argv)
          {"force-scp", "deprecated, use --wait-for-consensus option instead",
           runForceSCP},
          {"gen-seed", "generate and print a random node seed", runGenSeed},
-         {"http-command", "send a command to local stellar-core",
-          runHttpCommand},
+         {"http-command", "send a command to local onym-core", runHttpCommand},
          {"self-check", "performs diagnostic checks", runSelfCheck},
          {"merge-bucketlist", "writes diagnostic merged bucket list",
           runMergeBucketList},
@@ -2079,7 +2086,7 @@ handleCommandLine(int argc, char* const* argv)
           "report information about last checkpoint available in "
           "history archives",
           runReportLastHistoryCheckpoint},
-         {"run", "run stellar-core node", run},
+         {"run", "run onym-core node", run},
          {"sec-to-pub", "print the public key corresponding to a secret key",
           runSecToPub},
          {"sign-transaction",
@@ -2118,7 +2125,7 @@ handleCommandLine(int argc, char* const* argv)
     auto command = commandLine.selectCommand(adjustedCommandLine.first);
     bool didDefaultToHelp = command->name() != adjustedCommandLine.first;
 
-    auto exeName = "stellar-core";
+    auto exeName = "onym-core";
     auto commandName =
         fmt::format(FMT_STRING("{0} {1}"), exeName, command->name());
     auto args = CommandLineArgs{exeName, commandName, command->description(),

@@ -1,6 +1,8 @@
 // Copyright 2014 Stellar Development Foundation and contributors. Licensed
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
+// Modified by the Onym Core contributors in 2026: user-facing branding
+// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
 
 #include "main/CommandHandler.h"
 #include "crypto/KeyUtils.h"
@@ -249,13 +251,16 @@ CommandHandler::manualCmd(std::string const& cmd)
 void
 CommandHandler::fileNotFound(std::string const& params, std::string& retStr)
 {
-    retStr = "<b>Welcome to stellar-core!</b><p>";
+    retStr = "<b>Welcome to onym-core!</b><p>";
     retStr +=
         "Supported HTTP commands are listed in the <a href=\""
         "https://github.com/stellar/stellar-core/blob/master/docs/software/"
         "commands.md#http-commands"
         "\">docs</a> as well as in the man pages.</p>"
-        "<p>Have fun!</p>";
+        "<p>Have fun!</p>"
+        "<p>Onym Core is independent software forked from Stellar Core, "
+        "not affiliated with, sponsored or endorsed by the Stellar "
+        "Development Foundation.</p>";
 }
 
 namespace
