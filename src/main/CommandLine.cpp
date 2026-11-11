@@ -2,7 +2,8 @@
 // under the Apache License, Version 2.0. See the COPYING file at the root
 // of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 // Modified by the Onym Core contributors in 2026: user-facing branding
-// changed from Stellar Core to Onym Core. See FORK_ORIGIN.md.
+// changed from Stellar Core to Onym Core; license notice added to the
+// version output. See FORK_ORIGIN.md.
 
 // clang-format off
 // This needs to be included first
@@ -1674,6 +1675,14 @@ runVersion(CommandLineArgs const&)
               << std::endl;
     std::cout << "This is independent software, not affiliated with, "
                  "sponsored or endorsed by the Stellar Development Foundation."
+              << std::endl;
+    std::cout
+        << "License GPL-3.0-or-later <https://gnu.org/licenses/gpl.html>; "
+           "includes Apache-2.0 code from Stellar Core. See LICENSE."
+        << std::endl;
+    std::cout << "This is free software: you are free to change and "
+                 "redistribute it. There is NO WARRANTY, to the extent "
+                 "permitted by law."
               << std::endl;
     return 0;
 }

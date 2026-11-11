@@ -20,6 +20,7 @@ endorsed by the Stellar Development Foundation.
 | Upstream NOTICE file | None. Upstream ships no `NOTICE` file; its attribution statements live in `COPYING` and in per-file headers. |
 | Fork repository | https://github.com/onymchat/onym-core |
 | Fork date | 2026-11-11 |
+| Onym Core license | GPL-3.0-or-later for the combined work (`LICENSE`, `LICENSE-GPL-3.0.txt`). Upstream files stay Apache-2.0. |
 
 The upstream authors and contributors are recorded in the upstream git
 history, which this repository preserves in full. The upstream `AUTHORS` file
@@ -39,28 +40,33 @@ All upstream legal material is kept unchanged:
   checks crate licenses with `deny.toml`, which is unchanged.
 
 Onym Core adds a [`NOTICE`](./NOTICE) file that tells Onym additions apart from
-the upstream attribution. It adds no upstream attribution requirements beyond
-what upstream ships.
+the upstream attribution. It invents no upstream attribution requirements. It
+only restates the license notices of two bundled components that upstream
+`COPYING` omits (`xdrpp`, `gperftools`), taken from their own license files.
 
-## Open licensing issues
+## Licensing decisions
 
-These were found during the fork inspection and need legal review. This commit
-does not resolve them.
+These were found during the fork inspection.
 
-1. **`lib/xdrpp` is GPL-3.0-or-later.** Its `COPYING` (submodule commit
-   `a29a1703699ad2b6cb4b28538d6ed4173eacdb60`) grants distribution under GPLv3
-   or later. It lets the Stellar Development Foundation relicense it "under any
-   license the foundation sees fit", and lets CS244b alumni relicense it under
-   Apache 2.0. Onym Core has neither right. The `xdrpp` runtime library
-   (`libxdrpp.a`) is statically linked into `onym-core`, and its `xdrc`
-   compiler generates the XDR C++ headers. Upstream `COPYING` doesn't list
-   `xdrpp`. Until this is reviewed, assume that distributing `onym-core`
-   **binaries** may carry GPLv3 obligations for the combined work. The Onym and
-   upstream source files themselves remain Apache-2.0. Possible resolutions,
-   for counsel to decide: distribute binaries under GPLv3-compatible terms,
-   obtain a license from the `xdrpp` author, or replace `xdrpp`.
-2. **`lib/gperftools` (BSD-3-Clause, Google Inc.)** is also missing from upstream
-   `COPYING`. It is permissive. Its license file is kept in `lib/gperftools/`.
+1. **`lib/xdrpp` is GPL-3.0-or-later: resolved by licensing Onym Core under
+   GPL-3.0-or-later.** `xdrpp`'s `COPYING` (submodule commit
+   `a29a1703699ad2b6cb4b28538d6ed4173eacdb60`) grants the public distribution
+   under GPLv3 or later. It lets the Stellar Development Foundation relicense
+   it, and lets CS244b alumni relicense it under Apache 2.0. Onym Core has
+   neither right. `libxdrpp.a` is statically linked into `onym-core`, and the
+   `xdrc` compiler generates the XDR C++ headers. On 2026-11-11 the project
+   decided to distribute Onym Core as a whole under GPL-3.0-or-later (see
+   [`LICENSE`](./LICENSE)). Inherited Stellar Core files keep their Apache-2.0
+   headers and terms, which are compatible with GPLv3. Onym's own
+   contributions are GPL-3.0-or-later. Every other bundled license (MIT, BSD,
+   Boost, ISC, Apache-2.0, Unicode, public domain, and the `deny.toml`
+   allow-list for Rust crates) was checked and is GPLv3-compatible.
+   Distributors of binaries must provide the Complete Corresponding Source
+   (GPLv3 section 6). `onym-core version` prints the license and no-warranty
+   notice.
+2. **`lib/gperftools` (BSD-3-Clause, Google Inc.)** is missing from upstream
+   `COPYING`. Its attribution, and that of `xdrpp`, is added in
+   [`NOTICE`](./NOTICE) instead of editing the upstream `COPYING`.
 3. **Repository name (resolved).** The fork repository was first created as
    `onymchat/stellar-core`. Because the Stellar Brand Policy restricts the use
    of "Stellar" in project names, it was renamed to `onymchat/onym-core` on
@@ -91,6 +97,14 @@ changes are:
 | `src/main/CommandHandler.cpp` | HTTP root page says "Welcome to onym-core!" and carries the independence statement. |
 
 New files: `FORK_ORIGIN.md`, `NOTICE`, `TRADEMARKS.md`.
+
+A second commit (`chore: license Onym Core under GPL-3.0-or-later`) makes the
+licensing decision described above. It adds `LICENSE` and the verbatim
+`LICENSE-GPL-3.0.txt` (from https://www.gnu.org/licenses/gpl-3.0.txt, SHA-256
+`3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986`), updates
+`NOTICE`, `README.md` and this file, and adds the license and no-warranty
+notice to the `onym-core version` output (`src/main/CommandLine.cpp`). Like
+the first commit, it changes no protocol or runtime behavior.
 
 ## Deliberately unchanged identifiers
 

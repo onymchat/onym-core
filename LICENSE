@@ -1,0 +1,64 @@
+Onym Core licensing
+===================
+
+Onym Core, as a whole, is distributed under the GNU General Public License,
+version 3 or (at your option) any later version ("GPL-3.0-or-later"). The full
+license text is in LICENSE-GPL-3.0.txt.
+
+    Onym Core
+    Copyright 2026 The Onym Core contributors.
+
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <https://www.gnu.org/licenses/>.
+
+Why GPL-3.0-or-later
+--------------------
+
+Onym Core statically links the bundled xdrpp library (lib/xdrpp), which its
+author, David Mazieres, licenses to the general public under GPL-3.0-or-later
+(see lib/xdrpp/COPYING). That license lets the Stellar Development Foundation
+relicense xdrpp, but grants no such right to Onym Core. Onym Core therefore
+distributes the combined work under GPL-3.0-or-later.
+
+How the parts are licensed
+--------------------------
+
+1. Upstream Stellar Core code. Files inherited from Stellar Core
+   (https://github.com/stellar/stellar-core) remain Copyright Stellar
+   Development Foundation and contributors, under the Apache License, Version
+   2.0. See COPYING and LICENSE-APACHE.txt. Their copyright and license headers
+   are kept unchanged. The Apache License 2.0 is compatible with GPLv3, so
+   these files may be distributed as part of the GPL-3.0-or-later whole. Their
+   Apache-2.0 terms, including its attribution and notice requirements, still
+   apply to them.
+
+2. Onym Core contributions. Original work by the Onym Core contributors,
+   including Onym's changes to upstream files, is licensed under
+   GPL-3.0-or-later.
+
+3. Third-party components. Bundled libraries and git submodules under lib/ and
+   src/rust/soroban/, and the Rust crates in Cargo.lock, keep their own
+   licenses (MIT, BSD-2-Clause, BSD-3-Clause, Boost-1.0, ISC, Apache-2.0,
+   Unicode, public domain, and GPL-3.0-or-later for xdrpp). All of them are
+   compatible with GPLv3. See COPYING, NOTICE and each component's own license
+   file.
+
+Distributing binaries
+---------------------
+
+Anyone who distributes onym-core binaries must comply with GPLv3, including
+section 6: provide the Complete Corresponding Source for that binary. That
+source is this repository at the exact commit built, including every git
+submodule at its recorded revision and the build scripts (autogen.sh,
+configure.ac, Makefile.am files, Cargo.toml and Cargo.lock). Releases should
+also keep the license notices listed above.

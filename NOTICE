@@ -1,6 +1,9 @@
 Onym Core
 Copyright 2026 The Onym Core contributors.
 
+Onym Core as a whole is licensed under GPL-3.0-or-later. See LICENSE and
+LICENSE-GPL-3.0.txt.
+
 This product is an independent fork of Stellar Core
 (https://github.com/stellar/stellar-core), developed by the Stellar
 Development Foundation and contributors and licensed under the Apache License,
@@ -12,6 +15,24 @@ The upstream project does not ship a NOTICE file. Its license statement and the
 attributions of bundled third-party software are in the COPYING file, which is
 preserved unchanged. Each library under lib/ and each git submodule keeps its
 own license file.
+
+Bundled components that upstream COPYING does not list:
+
+lib/xdrpp:
+
+  The xdrpp library and XDR compiler (xdrc),
+  Copyright (C) 2014 David Mazieres
+  (https://github.com/xdrpp/xdrpp)
+  Licensed under the GNU General Public License, version 3 or later
+  (https://www.gnu.org/licenses/gpl-3.0.html)
+
+lib/gperftools:
+
+  gperftools,
+  Copyright (c) 2005, Google Inc.
+  (https://github.com/gperftools/gperftools)
+  Licensed under the 3-clause BSD license
+  (https://opensource.org/licenses/BSD-3-Clause)
 
 The Onym Core copyright notice above applies only to original contributions
 made by the Onym Core contributors. It does not claim ownership of the upstream
