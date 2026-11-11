@@ -62,18 +62,17 @@ make -j"$(nproc 2>/dev/null || sysctl -n hw.ncpu)"
 
 ## License
 
-Onym Core is distributed under the Apache License, Version 2.0, as was the
-upstream work it is derived from. See [COPYING](./COPYING),
-[LICENSE-APACHE.txt](./LICENSE-APACHE.txt) and [NOTICE](./NOTICE). Bundled
-third-party libraries are under their own licenses, listed in
-[COPYING](./COPYING) and in each library's directory under `lib/`.
+Onym Core as a whole is licensed under the **GNU General Public License,
+version 3 or later** (GPL-3.0-or-later). See [LICENSE](./LICENSE) and
+[LICENSE-GPL-3.0.txt](./LICENSE-GPL-3.0.txt). It uses GPL because it
+statically links the GPL-3.0-or-later [`xdrpp`](https://github.com/xdrpp/xdrpp)
+library.
 
-**Open licensing issue:** the bundled `lib/xdrpp` submodule, which is
-statically linked into `onym-core`, is licensed GPL-3.0-or-later (see
-[`lib/xdrpp/COPYING`](https://github.com/xdrpp/xdrpp/blob/master/COPYING)), and
-upstream `COPYING` does not list it. See
-[FORK_ORIGIN.md](./FORK_ORIGIN.md#open-licensing-issues) before distributing
-binaries.
+Files inherited from Stellar Core remain under the Apache License, Version 2.0
+([COPYING](./COPYING), [LICENSE-APACHE.txt](./LICENSE-APACHE.txt)), which is
+compatible with GPLv3. Bundled third-party libraries keep their own licenses,
+listed in [COPYING](./COPYING), [NOTICE](./NOTICE) and each library's own
+license file.
 
 "Stellar" is a trademark of the Stellar Development Foundation. All rights
 reserved.
